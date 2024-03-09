@@ -5,7 +5,7 @@ Esse projeto foi desenvolvido para a pós graduação de arquitetura de software
 
 
 ## Vídeo explicativo
-https://youtu.be/cWMxH8cwsAs?si=0SGGOOIOajGgWauc
+
 
 
 

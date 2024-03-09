@@ -9,6 +9,8 @@ Esse projeto foi desenvolvido para a pós graduação de arquitetura de software
 
 
 
+
+
 ## O problema
 A lanchonete de bairro, em expansão, enfrenta desafios sem um sistema de controle de pedidos. Com pedidos complexos e sem sistema, há risco de erros, atrasos e insatisfação dos clientes. A solução é um sistema de autoatendimento, que permite aos clientes fazer pedidos diretamente, reduzindo confusões e melhorando a eficiência.
 

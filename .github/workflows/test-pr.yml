@@ -29,16 +29,3 @@ jobs:
 
       - name: Run tests
         run: ./gradlew test
-
-      - name: Run SonarQube Scanner
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL : ${{ secrets.SONAR_HOST_URL }}
-        uses: SonarSource/sonarqube-scan-action@master
-        with:
-          args: >
-            -Dsonar.projectKey=ed-wantuil_tech-challenge-backend
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.login=${SONAR_TOKEN}
-#            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
-#            -Dsonar.junit.reportPaths=build/test-results/test

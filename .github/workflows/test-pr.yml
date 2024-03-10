@@ -30,22 +30,24 @@ jobs:
       - name: Run tests
         run: ./gradlew test
 
-#      - name: Run SonarScanner
-#        env:
-#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Utiliza a secret do repositório
-#        run: |
-#          sonar-scanner \
-#            -Dsonar.projectKey=ed-wantuil_tech-challenge-backend \
-#            -Dsonar.organization=ed-wantuil \
-#            -Dsonar.host.url=https://sonarcloud.io \
-#            -Dsonar.login=${SONAR_TOKEN}
+      #      - name: Run SonarScanner
+      #        env:
+      #          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Utiliza a secret do repositório
+      #        run: |
+      #          sonar-scanner \
+      #            -Dsonar.projectKey=ed-wantuil_tech-challenge-backend \
+      #            -Dsonar.organization=ed-wantuil \
+      #            -Dsonar.host.url=https://sonarcloud.io \
+      #            -Dsonar.login=${SONAR_TOKEN}
 
       - name: Run SonarQube Scanner
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         uses: SonarSource/sonarqube-scan-action@v1.0.0
         with:
           args: >
             -Dsonar.projectKey=ed-wantuil_tech-challenge-backend
             -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.login=${SONAR_TOKEN}
             -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
             -Dsonar.junit.reportPaths=build/test-results/test

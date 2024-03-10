@@ -15,11 +15,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
-          java-version: '17'
+          java-version: '21'
+          distribution: 'temurin'
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -38,7 +38,7 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=ed-wantuil_tech-challenge-backend
-            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.host.url=${SONAR_HOST_URL}
             -Dsonar.login=${SONAR_TOKEN}
-            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
-            -Dsonar.junit.reportPaths=build/test-results/test
+#            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
+#            -Dsonar.junit.reportPaths=build/test-results/test

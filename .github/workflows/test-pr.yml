@@ -39,3 +39,13 @@ jobs:
             -Dsonar.organization=ed-wantuil \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${SONAR_TOKEN}
+
+      - name: Run SonarQube Scanner
+        uses: SonarSource/sonarqube-scan-action@v1.0.0
+        with:
+          args: >
+            -Dsonar.projectKey=ed-wantuil_tech-challenge-backend
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
+            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
+            -Dsonar.junit.reportPaths=build/test-results/test

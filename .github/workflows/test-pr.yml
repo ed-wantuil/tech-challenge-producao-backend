@@ -46,6 +46,6 @@ jobs:
           args: >
             -Dsonar.projectKey=ed-wantuil_tech-challenge-backend
             -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
             -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
             -Dsonar.junit.reportPaths=build/test-results/test

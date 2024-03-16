@@ -1,5 +1,8 @@
 package br.com.fiap.techchallenge.domain.vos;
 
+import lombok.Builder;
+
+@Builder
 public record ProductName(String name) {
     public ProductName {
         validate(name);

@@ -37,8 +37,12 @@ jobs:
       - name: Run integration tests
         run: ./gradlew integrationTest
 
-#      - name: Run data migration
-#        run: ./gradlew flywayMigrate -i
+      - name: Run data migration
+        run: ./gradlew flywayMigrate -i
+        env:
+          FLYWAY_URL: ${{ secrets.FLYWAY_URL}}
+          FLYWAY_USER: ${{ secrets.FLYWAY_USER }}
+          FLYWAY_PASSWORD: ${{ secrets.FLYWAY_PASSWORD }}
 
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1

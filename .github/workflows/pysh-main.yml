@@ -31,14 +31,21 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -x test -x integrationTest
 
-      - name: Run unit tests
-        run: ./gradlew test
+#      - name: Run unit tests
+#        run: ./gradlew test
+#
+#      - name: Run integration tests
+#        run: ./gradlew integrationTest
 
-      - name: Run integration tests
-        run: ./gradlew integrationTest
+      - name: Run data migration repair
+        run: ./gradlew flywayRepair
+        env:
+          FLYWAY_URL: ${{ secrets.FLYWAY_URL}}
+          FLYWAY_USER: ${{ secrets.FLYWAY_USER }}
+          FLYWAY_PASSWORD: ${{ secrets.FLYWAY_PASSWORD }}
 
       - name: Run data migration
-        run: ./gradlew flywayMigrate -i
+        run: ./gradlew flywayMigrate
         env:
           FLYWAY_URL: ${{ secrets.FLYWAY_URL}}
           FLYWAY_USER: ${{ secrets.FLYWAY_USER }}

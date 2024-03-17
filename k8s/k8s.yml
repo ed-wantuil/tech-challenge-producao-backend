@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: tech-challenge2
-          image: registry.gitlab.com/ed-wantuil/tech-challenge-clean-architecture
+          image: 058264138215.dkr.ecr.us-east-1.amazonaws.com/techchallenge:latest
           imagePullPolicy: Always
           resources:
             limits:
@@ -90,38 +90,6 @@ spec:
       targetPort: 8080
       nodePort: 30009
   type: NodePort
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: postgres
-  labels:
-    app: postgres
-spec:
-  containers:
-    - name: postgres-container
-      image: registry.gitlab.com/ed-wantuil/tech-challenge-clean-architecture:postgres
-      ports:
-        - containerPort: 5432
-      env:
-        - name: POSTGRES_DB
-          value: postgres
-        - name: POSTGRES_USER
-          value: fiap
-        - name: POSTGRES_PASSWORD
-          value: Q9^3=!mr1&G~
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres-service
-spec:
-  selector:
-    app: postgres
-  ports:
-    - protocol: TCP
-      port: 5432
----
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole

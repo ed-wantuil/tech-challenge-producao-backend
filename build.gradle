@@ -46,7 +46,7 @@ test {
 }
 
 flyway {
-    driver = "oracle.jdbc.OracleDriver"
+    driver = "org.postgresql.Driver"
     url = System.getenv('FLYWAY_URL')
     user = System.getenv('FLYWAY_USER')
     password = System.getenv('FLYWAY_PASSWORD')

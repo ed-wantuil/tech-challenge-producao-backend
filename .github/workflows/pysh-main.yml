@@ -31,11 +31,11 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -x test -x integrationTest
 
-#      - name: Run unit tests
-#        run: ./gradlew test
-#
-#      - name: Run integration tests
-#        run: ./gradlew integrationTest
+      - name: Run unit tests
+        run: ./gradlew test
+
+      - name: Run integration tests
+        run: ./gradlew integrationTest
 
       - name: Run data migration repair
         run: ./gradlew flywayRepair

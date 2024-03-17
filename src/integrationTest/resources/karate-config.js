@@ -4,9 +4,9 @@ function() {
 
     var config= {};
 
-    config.applitionUrl = 'http://localhost:' + (karate.properties['karate.port']);
+    config.applicationUrl = 'http://localhost:' + (karate.properties['karate.port']);
 
-    karate.log('karate host: ', config.applitionUrl);
+    karate.log('karate host: ', config.applicationUrl);
 
     return config;
 }

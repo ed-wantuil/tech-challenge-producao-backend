@@ -41,10 +41,7 @@ jobs:
 #        run: ./gradlew flywayMigrate -i
 
       - name: Build Docker image
-        run: docker build -t tech-challenge-backend:latest .
-
-      - name: Tag Docker image
-        run: docker tag my-image-name:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/tech-challenge-backend:latest
+        run: docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/tech-challenge-backend:latest .
 
       - name: Publish Docker image to Amazon ECR
         run: docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/tech-challenge-backend:latest

@@ -37,17 +37,17 @@ jobs:
       - name: Run integration tests
         run: ./gradlew integrationTest
 
-      #      - name: Run data migration TODO
-      #        run: docker
+      - name: Run data migration
+        run: ./gradlew flywayMigrate -i
 
       - name: Build Docker image
         run: docker build -t tech-challenge-backend:latest .
 
       - name: Tag Docker image
-        run: docker tag my-image-name:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/my-image-name:latest
+        run: docker tag my-image-name:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/tech-challenge-backend:latest
 
       - name: Publish Docker image to Amazon ECR
-        run: docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/my-image-name:latest
+        run: docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/tech-challenge-backend:latest
 
 #TODO      - name: Delivery
 #        run:

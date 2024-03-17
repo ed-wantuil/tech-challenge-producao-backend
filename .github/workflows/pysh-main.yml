@@ -37,8 +37,8 @@ jobs:
       - name: Run integration tests
         run: ./gradlew integrationTest
 
-      - name: Run data migration
-        run: ./gradlew flywayMigrate -i
+#      - name: Run data migration
+#        run: ./gradlew flywayMigrate -i
 
       - name: Build Docker image
         run: docker build -t tech-challenge-backend:latest .

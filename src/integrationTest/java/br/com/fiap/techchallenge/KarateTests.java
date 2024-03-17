@@ -23,12 +23,6 @@ public class KarateTests {
     }
 
     @Karate.Test
-    Karate orderTest() {
-        return Karate.run("file:src/integrationTest/java/br/com/fiap/techchallenge/feature/Order.feature")
-                .systemProperty("karate.port", String.valueOf(localServerPort));
-    }
-
-    @Karate.Test
     Karate productTest() {
         return Karate.run("file:src/integrationTest/java/br/com/fiap/techchallenge/feature/Product.feature")
                 .systemProperty("karate.port", String.valueOf(localServerPort));

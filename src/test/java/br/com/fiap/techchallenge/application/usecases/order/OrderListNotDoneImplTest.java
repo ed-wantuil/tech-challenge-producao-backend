@@ -62,7 +62,7 @@ public class OrderListNotDoneImplTest {
 
     private Order createOrder(String id, LocalDate created, DeliveryStatus deliveryStatus) {
         Order order = new Order();
-        order.setId(id);
+        order.setOrderId(id);
         order.setCreated(created);
         order.setDeliveryStatus(deliveryStatus);
 

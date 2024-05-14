@@ -27,7 +27,7 @@ public class UpdateDeliveryStatusImplTest {
         String orderId = "uniqueOrderId";
         String newDeliveryStatus = "READY";
         Order mockUpdatedOrder = new Order();
-        mockUpdatedOrder.setId(orderId);
+        mockUpdatedOrder.setOrderId(orderId);
         mockUpdatedOrder.setDeliveryStatus(new DeliveryStatus(newDeliveryStatus));
         when(orderGateway.updateDeliveryStatus(orderId, newDeliveryStatus)).thenReturn(mockUpdatedOrder);
 
@@ -35,7 +35,7 @@ public class UpdateDeliveryStatusImplTest {
 
         verify(orderGateway, times(1)).updateDeliveryStatus(orderId, newDeliveryStatus);
         assertNotNull(resultOrder, "O pedido retornado não deve ser nulo.");
-        assertEquals(orderId, resultOrder.getId(), "O ID do pedido deve corresponder ao fornecido.");
+        assertEquals(orderId, resultOrder.getOrderId(), "O ID do pedido deve corresponder ao fornecido.");
         assertEquals(newDeliveryStatus, resultOrder.getDeliveryStatus().getStatus().toString(), "O status de entrega do pedido deve ser atualizado para o novo status.");
     }
 }

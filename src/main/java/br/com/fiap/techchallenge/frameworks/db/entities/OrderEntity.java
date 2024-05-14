@@ -3,33 +3,37 @@ package br.com.fiap.techchallenge.frameworks.db.entities;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import br.com.fiap.techchallenge.frameworks.util.LocalDateConverter;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
-@Table(name = "orders")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Getter
-@Setter
+@Data
+@DynamoDBTable(tableName = "order")
+@DynamoDBDocument
 public class OrderEntity {
 
-    @Id
-    @GeneratedValue
+    @DynamoDBHashKey(attributeName = "orderId")
     private UUID orderId;
 
+    @DynamoDBAttribute(attributeName = "customerId")
     private UUID customerId;
 
+    @DynamoDBAttribute(attributeName = "deliveryStatus")
     private String deliveryStatus;
 
+
+    @DynamoDBAttribute(attributeName = "created")
+    @DynamoDBTypeConverted(converter = LocalDateConverter.class)
     private LocalDate created;
 
 }

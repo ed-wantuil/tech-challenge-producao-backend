@@ -7,6 +7,7 @@ import br.com.fiap.techchallenge.application.gateways.OrderGateway;
 import br.com.fiap.techchallenge.domain.entities.Order;
 import br.com.fiap.techchallenge.frameworks.db.converters.OrderEntityToOrder;
 import br.com.fiap.techchallenge.frameworks.db.converters.OrderToOrderEntity;
+import br.com.fiap.techchallenge.frameworks.db.entities.OrderEntity;
 import br.com.fiap.techchallenge.frameworks.db.repositories.SpringDataOrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,7 @@ public class OrderRepositoryImpl implements OrderGateway {
 
     @Override
     public List<Order> findByDeliveryStatus(final List<String> status) {
-        final var orderEntities = springDataOrderRepository.findByDeliveryStatus(status);
+        final List<OrderEntity> orderEntities = (List<OrderEntity>) springDataOrderRepository.findAll();
 
         return orderEntities
                 .stream()
@@ -47,5 +48,12 @@ public class OrderRepositoryImpl implements OrderGateway {
         final var oderEntity = springDataOrderRepository.findById(UUID.fromString(id)).orElseThrow();
 
         return orderEntityToOrder.convert(oderEntity);
+    }
+
+    @Override
+    public void create(Order order) {
+        final var orderEntity = orderToOrderEntity.convert(order);
+
+        springDataOrderRepository.save(orderEntity);
     }
 }

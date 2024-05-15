@@ -12,4 +12,6 @@ public interface OrderGateway {
     Order updateDeliveryStatus(String id, String deliveryStatus);
 
     Order findById(String id);
+
+    void create(Order order);
 }

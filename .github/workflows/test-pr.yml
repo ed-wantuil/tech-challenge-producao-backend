@@ -32,3 +32,15 @@ jobs:
 
       - name: Run integration tests
         run: ./gradlew integrationTest
+
+      - name: Generate Coverage Report
+        run: mvn jacoco:report
+
+      - name: Check Coverage
+        run: |
+          COVERAGE=$(mvn jacoco:report | grep -A 1 '<counter type="INSTRUCTION" missed="0" covered="' | grep 'covered' | sed -n 's/.*covered="\([0-9]*\)".*/\1/p')
+          THRESHOLD=80
+          if [ "$COVERAGE" -lt "$THRESHOLD" ]; then
+            echo "Coverage is below threshold"
+            exit 1
+          fi

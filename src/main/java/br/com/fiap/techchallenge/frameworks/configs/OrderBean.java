@@ -1,10 +1,12 @@
 package br.com.fiap.techchallenge.frameworks.configs;
 
 import br.com.fiap.techchallenge.application.gateways.OrderGateway;
+import br.com.fiap.techchallenge.application.usecases.order.CreateOrder;
 import br.com.fiap.techchallenge.application.usecases.order.FindOrderByDeliveryStatus;
 import br.com.fiap.techchallenge.application.usecases.order.FindOrderById;
 import br.com.fiap.techchallenge.application.usecases.order.OrderListNotDone;
 import br.com.fiap.techchallenge.application.usecases.order.UpdateDeliveryStatus;
+import br.com.fiap.techchallenge.application.usecases.order.impl.CreateOrderImpl;
 import br.com.fiap.techchallenge.application.usecases.order.impl.FindOrderByIdImpl;
 import br.com.fiap.techchallenge.application.usecases.order.impl.OrderListNotDoneImpl;
 import br.com.fiap.techchallenge.application.usecases.order.impl.UpdateDeliveryStatusImpl;
@@ -35,6 +37,11 @@ public class OrderBean {
     @Bean
     OrderToOrderResponse orderToOrderResponse() {
         return new OrderToOrderResponse();
+    }
+
+    @Bean
+    CreateOrder createOrder(final OrderGateway orderGateway) {
+        return new CreateOrderImpl(orderGateway);
     }
 
     @Bean

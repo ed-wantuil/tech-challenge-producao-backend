@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Data
-@DynamoDBTable(tableName = "order")
+@DynamoDBTable(tableName = "delivery")
 @DynamoDBDocument
 public class OrderEntity {
 

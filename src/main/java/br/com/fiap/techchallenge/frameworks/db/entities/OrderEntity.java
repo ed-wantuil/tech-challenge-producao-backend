@@ -1,46 +1,39 @@
 package br.com.fiap.techchallenge.frameworks.db.entities;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import br.com.fiap.techchallenge.frameworks.util.LocalDateConverter;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
-@Table(name = "orders")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Getter
-@Setter
+@Data
+@DynamoDBTable(tableName = "delivery")
+@DynamoDBDocument
 public class OrderEntity {
 
-    @Id
-    @GeneratedValue
-    private UUID id;
+    @DynamoDBHashKey(attributeName = "orderId")
+    private UUID orderId;
 
-    @ManyToOne
-    private CustomerEntity customer;
+    @DynamoDBAttribute(attributeName = "customerId")
+    private UUID customerId;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderItemEntity> items;
-
+    @DynamoDBAttribute(attributeName = "deliveryStatus")
     private String deliveryStatus;
 
-    private String paymentStatus;
 
+    @DynamoDBAttribute(attributeName = "created")
+    @DynamoDBTypeConverted(converter = LocalDateConverter.class)
     private LocalDate created;
-
-    private Double amount;
 
 }
